@@ -10,32 +10,32 @@ const weekDays = [
   "শনিবার",
 ];
 
-const dateChangeHandler = (e) => {
-  const startDateInput = e.target.value; // "2025-10-16"
-  const [y, m, d] = startDateInput.split("-").map(Number);
-  const date = new Date(y, m - 1, d); // always local midnight of chosen day
-
-  const startDateObject = new Date(date); // copy it
-  console.log(e.target.value);
-  console.log(startDateObject);
+const renderTable = (startDate) => {
+  const [y, m, d] = startDate.split("-").map(Number);
+  const date = new Date(y, m - 1, d);
+  const startDateObject = new Date(date);
   const currentMonth = startDateObject.getMonth();
 
   targetTable.innerHTML = `
-      <tr>
-        <th>তারিখ</th>
-        <th>বার</th>
-      </tr>
+    <tr>
+      <th>তারিখ</th>
+      <th>বার</th>
+    </tr>
   `;
 
   while (startDateObject.getMonth() === currentMonth) {
     targetTable.innerHTML += `
-    <tr>
-      <td>${startDateObject.toLocaleDateString()}</td>
-      <td>${weekDays[startDateObject.getDay()]}</td>
-    </tr>
- `;
+      <tr>
+        <td>${startDateObject.toLocaleDateString()}</td>
+        <td>${weekDays[startDateObject.getDay()]}</td>
+      </tr>
+    `;
     startDateObject.setDate(startDateObject.getDate() + 3);
   }
+};
+
+const dateChangeHandler = (e) => {
+  renderTable(e.target.value);
 };
 
 dateInput.addEventListener("change", dateChangeHandler);

@@ -11,7 +11,13 @@ const weekDays = [
 ];
 
 const dateChangeHandler = (e) => {
-  const startDateObject = new Date(e.target.value);
+  const startDateInput = e.target.value; // "2025-10-16"
+  const [y, m, d] = startDateInput.split("-").map(Number);
+  const date = new Date(y, m - 1, d); // always local midnight of chosen day
+
+  const startDateObject = new Date(date); // copy it
+  console.log(e.target.value);
+  console.log(startDateObject);
   const currentMonth = startDateObject.getMonth();
 
   targetTable.innerHTML = `
@@ -24,7 +30,7 @@ const dateChangeHandler = (e) => {
   while (startDateObject.getMonth() === currentMonth) {
     targetTable.innerHTML += `
     <tr>
-      <td>${startDateObject.toLocaleDateString("Bn-BD")}</td>
+      <td>${startDateObject.toLocaleDateString()}</td>
       <td>${weekDays[startDateObject.getDay()]}</td>
     </tr>
  `;

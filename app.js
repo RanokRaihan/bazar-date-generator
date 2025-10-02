@@ -26,7 +26,7 @@ const renderTable = (startDate) => {
   while (startDateObject.getMonth() === currentMonth) {
     targetTable.innerHTML += `
       <tr>
-        <td>${startDateObject.toLocaleDateString()}</td>
+        <td>${startDateObject.toLocaleDateString("bn-BD")}</td>
         <td>${weekDays[startDateObject.getDay()]}</td>
       </tr>
     `;
@@ -37,5 +37,24 @@ const renderTable = (startDate) => {
 const dateChangeHandler = (e) => {
   renderTable(e.target.value);
 };
+
+function setInitialStartDate() {
+  const today = new Date();
+  let startYear = today.getFullYear();
+  let startMonth = today.getMonth();
+  if (today.getDate() >= 20) {
+    startMonth += 1;
+    if (startMonth > 11) {
+      startMonth = 0;
+      startYear += 1;
+    }
+  }
+  const initialStartDate = new Date(startYear, startMonth, 2);
+  const formattedStartDate = initialStartDate.toISOString().slice(0, 10);
+  dateInput.value = formattedStartDate;
+  renderTable(formattedStartDate);
+}
+
+setInitialStartDate();
 
 dateInput.addEventListener("change", dateChangeHandler);

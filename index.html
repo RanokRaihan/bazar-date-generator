@@ -3,29 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Generate Bazar dates schedule for Mayaneer Mess - A convenient tool to plan market shopping dates"
+    />
     <link rel="stylesheet" href="style.css" />
     <script src="app.js" defer></script>
-    <title>Generate Bazar Date</title>
+    <title>Bazar Date Generator - Mayaneer Mess</title>
   </head>
   <body>
-    <div class="container">
-      <div class="header">
-        <h1>List of Bazar dates</h1>
-        <h2>Mayaneer Mess</h2>
+    <header class="header">
+      <div class="header-content">
+        <div class="title-section">
+          <h1 class="main-title">Bazar Date Generator</h1>
+          <p class="subtitle">Mayaneer Mess</p>
+        </div>
+        <button
+          type="button"
+          class="theme-toggle"
+          aria-label="Toggle dark mode"
+          title="Switch between light and dark theme"
+        >
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+        </button>
       </div>
-      <div class="input-section">
-        <form action="#">
-          <div>
-            <label for="start-date">Bazar start date</label>
-            <input type="date" name="start-date" id="start-date" />
+    </header>
+
+    <main class="container">
+      <section class="input-section" aria-labelledby="date-input-heading">
+        <h2 id="date-input-heading" class="visually-hidden">
+          Select Bazar Start Date
+        </h2>
+        <form class="date-form" novalidate>
+          <div class="input-group">
+            <label for="start-date" class="input-label">
+              <span class="label-text">Bazar Start Date</span>
+              <span class="label-hint"
+                >Select the first date for your bazar schedule</span
+              >
+            </label>
+            <input
+              type="date"
+              name="start-date"
+              id="start-date"
+              class="date-input"
+              required
+              aria-describedby="date-help"
+            />
+            <div id="date-help" class="input-help">
+              The schedule will show dates every 3 days starting from your
+              selected date
+            </div>
           </div>
         </form>
-      </div>
-      <div class="date-list">
-        <table class="target-table">
-          <!-- generated code will go here -->
-        </table>
-      </div>
-    </div>
+      </section>
+
+      <section class="results-section" aria-labelledby="results-heading">
+        <h2 id="results-heading" class="results-title">Bazar Schedule</h2>
+        <div class="table-container">
+          <table
+            class="target-table"
+            role="table"
+            aria-label="Bazar dates and corresponding weekdays"
+          >
+            <caption class="table-caption">
+              List of bazar dates with their corresponding weekdays
+            </caption>
+            <!-- Generated content will go here -->
+          </table>
+        </div>
+        <div class="table-info" id="table-info" aria-live="polite">
+          <!-- Dynamic info about the generated schedule -->
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer-text">Generated with ❤️ for Mayaneer Mess community</p>
+    </footer>
   </body>
 </html>

@@ -3,14 +3,12 @@ const themeToggle = document.querySelector(".theme-toggle");
 const themeIcon = document.querySelector(".theme-icon");
 const body = document.body;
 
-// Initialize theme from localStorage or system preference
+// Initialize theme from localStorage or default to dark
 function initializeTheme() {
   const savedTheme = localStorage.getItem("theme");
-  const systemPrefersDark = window.matchMedia(
-    "(prefers-color-scheme: dark)"
-  ).matches;
 
-  const theme = savedTheme || (systemPrefersDark ? "dark" : "light");
+  // Default to dark theme if no saved preference
+  const theme = savedTheme || "dark";
   setTheme(theme);
 }
 

@@ -178,6 +178,7 @@ function announceToScreenReader(message) {
 
 function setInitialStartDate() {
   const today = new Date();
+  console.log("Setting initial start date to:", today);
   let startYear = today.getFullYear();
   let startMonth = today.getMonth();
 
@@ -196,7 +197,6 @@ function setInitialStartDate() {
 
   // Set min date to today to prevent past dates
   const todayFormatted = today.toISOString().slice(0, 10);
-  dateInput.setAttribute("min", todayFormatted);
 }
 
 // Keyboard navigation enhancement

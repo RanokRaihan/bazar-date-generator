@@ -189,12 +189,10 @@ function setInitialStartDate() {
       startYear += 1;
     }
   }
+  const formatedStartDate = `${startYear}-${startMonth + 1}-02`;
 
-  const initialStartDate = new Date(startYear, startMonth, 2);
-  const formattedStartDate = initialStartDate.toISOString().slice(0, 10);
-
-  dateInput.value = formattedStartDate;
-  renderTable(formattedStartDate);
+  console.log("Initial start date set to:", formatedStartDate);
+  renderTable(formatedStartDate);
 
   // Set min date to today to prevent past dates
   const todayFormatted = today.toISOString().slice(0, 10);
